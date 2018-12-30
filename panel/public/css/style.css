@@ -1,0 +1,38 @@
+.main-footerx{
+    position: relative;
+    height: 50px;
+    bottom: 0;
+    border-top: 3px solid #405258;
+    width: 100%;
+    left: 0;
+    background-color: #2f3e42;
+    color: whitesmoke;
+    padding: 15px;
+}
+
+.main-footerx ul {
+    float: left;
+    list-style: none outside none;
+}
+
+.main-footerx ul li {
+    position: relative;
+    display: inline;
+    margin: 20px;
+}
+
+.main-footerx ul li:last-child{
+    float: right;
+    margin: -5px 0 0 0;
+    padding: 0;
+}
+
+#lang{
+    float: right;
+    margin: -5px 100px 0 15px;
+    padding: 0;
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
+}

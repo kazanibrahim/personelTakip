@@ -1,0 +1,89 @@
+<% include ../shared/header.ejs %>
+<% include ../shared/topBar.ejs %>
+<link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker-bs3.css">
+<link rel="stylesheet" href="/plugins/datatable/css/dataTables.bootstrap.css">
+<link type="text/css" rel="stylesheet" href="/plugins/select/css/bootstrap-select.min.css"/>
+<link rel="stylesheet" href="/css/wait.css">
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading col-sm-12">
+
+                <div class="panel-title col-sm-4">
+                    <label style="margin-top: 5px;">Personel Raporu</label>
+                </div>
+
+                <div class="col-sm-8">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control pull-right" id="reportDateRange" placeholder="Lütfen, Başlangıç Tarih Giriniz">
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="selectPersonnel" class="form-control select2Personnel"
+                                data-live-search="true" title="Personel Seç">
+                            <% for (var index in data){%>
+                            <option value="<%= data[index]._id%>"><%= data[index].name+" - "+ data[index].surname%></option>
+                            <%}%>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <a id="createReportButton" class="btn btn-primary btn-sm">Rapor Oluştur</a>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <a id="exportReportExcelButton" class="btn btn-warning btn-sm">Excel'e Aktar</a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-body">
+
+                <table id="dataTable" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>İsim</th>
+                        <th>Soyisim</th>
+                        <th>Sicil No</th>
+                        <th>T.C No</th>
+                        <th>Departman</th>
+                        <th>Pozisyon</th>
+                        <th>Okuyucu</th>
+                        <th>Tarih / Zaman</th>
+                        <th>Durum</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>İsim</th>
+                        <th>Soyisim</th>
+                        <th>Sicil No</th>
+                        <th>T.C No</th>
+                        <th>Departman</th>
+                        <th>Pozisyon</th>
+                        <th>Okuyucu</th>
+                        <th>Tarih / Zaman</th>
+                        <th>Durum</th>
+                    </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<script src="/plugins/daterangepicker/moment.js"></script>
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="/plugins/select/js/bootstrap-select.min.js"></script>
+<script src="/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatable/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/reports/personnel.js"></script>
+<% include ../shared/footer.ejs %>

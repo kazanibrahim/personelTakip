@@ -1,0 +1,99 @@
+<% include ../../shared/header.ejs %>
+<% include ../../shared/topBar.ejs %>
+<link rel="stylesheet" href="/plugins/datatable/css/dataTables.bootstrap.css">
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading col-sm-12">
+
+                <div class="panel-title col-sm-6">
+                    <label style="margin-top: 5px;">Okuyucu Grupları</label>
+                </div>
+
+                <div class="col-sm-offset-4 col-sm-2">
+                    <a type="button" class="btn btn-primary btn-sm active" href="/definitions/rgroup/list">Listele</a>
+                    <a type="button" class="btn btn-primary btn-sm" href="/definitions/rgroup/create">Yeni Ekle</a>
+                </div>
+
+            </div>
+
+            <div class="panel-body">
+
+                <table id="dataTable" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Okuyucu Grup Adı</th>
+                        <th>Antipass Back</th>
+                        <th>Okuyucu Adı</th>
+                        <th>Okuyucu Seri No</th>
+                        <th>İşlemler</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var index in data) {
+                        var subData = data[index];
+                    %>
+                    <tr class="deletable">
+                        <td><%= subData.name %></td>
+                        <td><%= subData.isAntiPassBack ? "✔" : "X"  %>  </td>
+                        <td>
+                            <%
+                            for(var i = 0; i < subData.readers4list.length; i++){
+                                var subData2 = subData.readers4list[i];%>
+                            <%= subData2.name  %><br>
+                            <%  }
+                            %>
+                        </td>
+                        <td>
+                            <%
+                            for(var i = 0; i < subData.readers4list.length; i++){
+                                var subData2 = subData.readers4list[i];%>
+                            <%= subData2.serial  %><br>
+                            <%  }
+                            %>
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a class="btn btn-default editbutton" href="/definitions/rgroup/edit/<%= subData._id%>">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </a>
+                                <button class="deleter btn btn-danger"
+                                        data-id="<%= subData._id%>"
+                                        data-url="/definitions/rgroup/delete">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Okuyucu Grup Adı</th>
+                        <th>Antipass Back</th>
+                        <th>Okuyucu Adı</th>
+                        <th>Okuyucu Seri No</th>
+                        <th>İşlemler</th>
+                    </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+<script src="/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatable/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/createdatatable.js"></script>
+<script src="/js/deleter_button.js"></script>
+<% include ../../shared/footer.ejs %>

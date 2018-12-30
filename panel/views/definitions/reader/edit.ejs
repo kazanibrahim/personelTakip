@@ -1,0 +1,115 @@
+<% include ../../shared/header.ejs %>
+<% include ../../shared/topBar.ejs %>
+<link type="text/css" rel="stylesheet" href="/plugins/select/css/bootstrap-select.min.css"/>
+<link rel="stylesheet" href="/plugins/datatable/css/dataTables.bootstrap.css">
+<section>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading col-sm-12">
+
+                    <div class="panel-title col-sm-6">
+                        <label style="margin-top: 5px;">Okuyucu Düzenle</label>
+                    </div>
+
+                    <div class="col-sm-offset-4 col-sm-2">
+                        <a type="button" class="btn btn-primary btn-sm" href="/definitions/reader/list">Listele</a>
+                        <a type="button" class="btn btn-primary btn-sm active" href="/definitions/reader/create">Yeni Ekle</a>
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+
+
+                    <div class="col-sm-6">
+
+                        <div class="form">
+
+                            <div class="form-group">
+                                <label><%= "Okuyucu Adı" %></label>
+                                <input type="text" id="readerName" class="form-control" title="Okuyucu Adı Giriniz"
+                                       placeholder="<%= "Lütfen, Okuyucu Adı Giriniz" %>" value="<%= data.readerName%>">
+                            </div>
+
+                            <div class="form-group">
+                                <label><%= "Okuyucu Seri No" %></label>
+                                <input type="text" id="readerSerial" class="form-control" title="Okuyucu Seri No Giriniz"
+                                       placeholder="<%= "Lütfen, Okuyucu Seri No Giriniz" %>"
+                                       maxlength="8" onkeypress="return isNumber(event)" value="<%= data.serialNo%>">
+                            </div>
+
+                            <div class="form-group">
+                                <label><%= "Okuyucu Özelliği" %></label>
+                                <select id="readerWorkingProp" class="form-control selectpicker">
+                                    <option value=-3 disabled selected hidden>Lütfen, Okuyucu Özelliği Seçiniz</option>
+                                    <option value=0 <%if(data.readerProp == 0 ){%>selected><%}else{%>><%}%>TCP/IP Standard</option>
+                                    <option value=1 <%if(data.readerProp == 1 ){%>selected><%}else{%>><%}%>TCP/IP Keypad</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label><%= "Okuyucu Tipi" %></label>
+                                <select id="readerWorkingType" class="form-control selectpicker">
+                                    <option value=-3 disabled selected hidden>Lütfen, Okuyucu Tipi Seçiniz</option>
+                                    <option value=-1 <%if(data.readerType == -1 ){%>selected><%}else{%> >  <%}%> Tanım</option>
+                                    <option value=0 <%if(data.readerType == 0 ){%>selected><%}else{%>   >  <%}%> Çıkış</option>
+                                    <option value=1 <%if(data.readerType == 1 ){%>selected><%}else{%>   >  <%}%> Giriş</option>
+                                    <option value=2 <%if(data.readerType == 2 ){%>selected><%}else{%>   >  <%}%> Giriş - Çıkış</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <a class="btn btn-primary edit-reader" data-id="<%= data._id%>"><%= "Kaydet" %></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="form">
+
+                            <div class="form-group">
+                                <label><%= "Kayıtsız Okuyucular" %></label>
+                                <table id="dataTable" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><%="Okuyucu Seri No"%></th>
+                                        <th><%="Okuyucu Durumu"%></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody><tr></tr></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="/js/conf.js"></script>
+<script src="/plugins/select/js/bootstrap-select.min.js"></script>
+<script src="/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatable/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/definitions/realReaderStatus.js"></script>
+<script src="/js/definitions/submitReader.js"></script>
+<script src="/js/numeric.js"></script>
+<script src="/js/createdatatable.js"></script>
+<% include ../../shared/footer.ejs %>

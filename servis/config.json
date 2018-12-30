@@ -1,0 +1,17 @@
+{
+  "server": {
+    "port": 1335
+  },
+  "ws": {
+    "port": 7230
+  },
+  "tcp": {
+    "port": 7279
+  },
+  "db": {
+    "title": "rfidcardpure",
+    "host": "127.0.0.1:27017/rfidcardpure",
+    "username": "",
+    "password": ""
+  }
+}

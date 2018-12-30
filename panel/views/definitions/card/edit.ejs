@@ -1,0 +1,101 @@
+<% include ../../shared/header.ejs %>
+<% include ../../shared/topBar.ejs %>
+<link rel="stylesheet" href="/plugins/datatable/css/dataTables.bootstrap.css">
+<section>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading col-sm-12">
+
+                    <div class="panel-title col-sm-6">
+                        <label style="margin-top: 5px;">Kart Düzenle</label>
+                    </div>
+
+                    <div class="col-sm-offset-4 col-sm-2">
+                        <a type="button" class="btn btn-primary btn-sm" href="/definitions/card/list">Listele</a>
+                        <a type="button" class="btn btn-primary btn-sm active" href="/definitions/card/create">Yeni Ekle</a>
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="col-sm-6">
+
+                        <div class="form">
+
+                            <div class="form-group">
+                                <label><%= "Tanım Okuyucuları" %></label>
+                                <table id="dataTable" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th><%="Okuyucu Seri No"%></th>
+                                        <th><%="Okuyucu İsmi"%></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% for(var index in reader){
+                                        var subReader = reader[index];
+                                    %>
+                                    <tr>
+                                        <td><input type="checkbox" name="isChecked" value="<%= subReader.serialNo %>"></td>
+                                        <td><%= subReader.serialNo %></td>
+                                        <td><%= subReader.readerName %></td>
+                                    </tr>
+                                    <%}%>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-sm-6">
+
+                        <div class="form">
+
+                            <div class="form-group">
+                                <label>Kart Id</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-group" id="cardID" placeholder="Lütfen, Kart Id Giriniz" title="Kart Id Giriniz" maxlength="8" value="<%= data.cardId%>">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info btn-default getCardID">Kart Id Al</button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Kart Kodu</label>
+                                <input type="text" id="cardCode" class="form-control" placeholder="Lütfen, Kart Kodu Giriniz" title="Kart Kodu Giriniz" value="<%= data.cardCode%>">
+                            </div>
+
+                            <div class="form-group">
+                                <a class="btn btn-primary edit-card" data-id="<%= data._id%>"><%= "Kaydet" %></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatable/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/createdatatable.js"></script>
+<script src="/js/definitions/submitCard.js"></script>
+<% include ../../shared/footer.ejs %>

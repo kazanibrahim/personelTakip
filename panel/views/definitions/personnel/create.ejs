@@ -1,0 +1,103 @@
+<% include ../../shared/header.ejs %>
+<% include ../../shared/topBar.ejs %>
+<link type="text/css" rel="stylesheet" href="/plugins/select/css/bootstrap-select.min.css"/>
+<section>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading col-sm-12">
+
+                    <div class="panel-title col-sm-6">
+                        <label style="margin-top: 5px;">Yeni Personel Ekle</label>
+                    </div>
+
+                    <div class="col-sm-offset-4 col-sm-2">
+                        <a type="button" class="btn btn-primary btn-sm" href="/definitions/personnel/list">Listele</a>
+                        <a type="button" class="btn btn-primary btn-sm active" href="/definitions/personnel/create">Yeni Ekle</a>
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="col-sm-6">
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label>Personel Resmi</label>
+                                    <div class="singleimageuploader" data-url="/definitions/personnel/uploadImage">
+                                        <p><i class="fa fa-cloud-upload"></i>&nbsp;Resim Seç</p>
+                                        <img src="/img/pers/defaultimg.png" style="max-width: 115px;margin-bottom: 20px;margin-left: 10px;" id="imageUploader" />
+                                        <div class="progress" style="height:5px;max-width: 90%;">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width:0;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label for="name">İsim</label>
+                                    <input type="text" id="name" class="form-control" placeholder="Lütfen, İsim Giriniz" title="İsim Giriniz">
+                                    <div class="margin-bottom"></div>
+                                    <label for="surname">Soyisim</label>
+                                    <input type="text" id="surname" class="form-control" placeholder="Lütfen, Soyad Giriniz" title="Soyad Giriniz">
+                                    <div class="margin-bottom"></div>
+                                    <label class="control-label">Geçiş Yetkisi</label>
+                                    <select id="selectAccessGroup" class="form-control select2AccessGroup"
+                                            data-live-search="true" multiple="multiple"
+                                            data-actions-box="true" title="Geçiş Yetkisi Seçiniz...">
+                                        <% for (var index in rGroups){%>
+                                        <option value="<%= rGroups[index]._id%>"><%= rGroups[index].name%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label for="TCNo">T.C No</label>
+                                    <input type="text" id="TCNo" class="form-control" placeholder="Lütfen, T.C. Giriniz" title="T.C. Giriniz">
+                                    <div class="margin-bottom"></div>
+                                    <label for="registerNo">Sicil No</label>
+                                    <input type="text" id="registerNo" class="form-control" placeholder="Lütfen, Sicil No Giriniz" title="Sici No Giriniz">
+                                    <div class="margin-bottom"></div>
+                                    <label>Kart</label>
+                                    <select id="selectCardCode" class="form-control select2Cards"
+                                            data-live-search="true" title="Kart Seçiniz...">
+                                        <% for (var index in cards){%>
+                                        <option value="<%= cards[index]._id%>"><%= cards[index].cardCode%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="panel-footer">
+                    <a class="btn btn-primary submit-personnel"><%= "Kaydet" %></a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="/js/single_image_uploader.js"></script>
+<script src="/plugins/select/js/bootstrap-select.min.js"></script>
+<script src="/js/numeric.js"></script>
+<script src="/js/definitions/submitPersonnel.js"></script>
+<% include ../../shared/footer.ejs %>

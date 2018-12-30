@@ -1,0 +1,71 @@
+<% include ../shared/header.ejs %>
+<% include ../shared/topBar.ejs %>
+<section>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading col-sm-12">
+
+                    <div class="panel-title col-sm-6">
+                        <label style="margin-top: 5px;">Kullanıcı Düzenle</label>
+                    </div>
+
+                    <div class="col-sm-offset-4 col-sm-2">
+                        <a type="button" class="btn btn-primary btn-sm" href="/user/list">Listele</a>
+                        <a type="button" class="btn btn-primary btn-sm active" href="/user/create">Yeni Ekle</a>
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="col-sm-12">
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Kullanıcı İsmi</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="name" placeholder="Lütfen, Kullanıcı İsmi Giriniz" value="<%= data.name%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="surname" class="col-sm-2 control-label">Kullanıcı Soyismi</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="surname" placeholder="Lütfen, Kullanıcı Soyismi Giriniz" value="<%= data.surname%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">Rumuz</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="username" placeholder="Lütfen, Rumuz Giriniz" value="<%= data.username%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd" class="col-sm-2 control-label">Şifre</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="pwd" placeholder="Lütfen, Şifre Giriniz">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="panel-footer">
+                    <a data-id="<%= data._id%>" class="btn btn-primary edit-user"><%= "Kaydet" %></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="/js/numeric.js"></script>
+<script src="/js/submitUser.js"></script>
+<% include ../shared/footer.ejs %>

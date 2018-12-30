@@ -1,0 +1,139 @@
+<% include ../../shared/header.ejs %>
+<% include ../../shared/topBar.ejs %>
+<link rel="stylesheet" href="/plugins/datatable/css/dataTables.bootstrap.css">
+<section>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading col-sm-12">
+
+                    <div class="panel-title col-sm-6">
+                        <label style="margin-top: 5px;">Okuyucu Grubu Düzenle</label>
+                    </div>
+
+                    <div class="col-sm-offset-4 col-sm-2">
+                        <a type="button" class="btn btn-primary btn-sm" href="/definitions/rgroup/list">Listele</a>
+                        <a type="button" class="btn btn-primary btn-sm active" href="/definitions/rgroup/create">Yeni Ekle</a>
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+
+
+                    <div class="col-sm-12">
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><%= "Okuyucu Grup Adı" %></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="rGroupName" class="form-control" title="Okuyucu Grup Adı Giriniz"
+                                       placeholder="<%= "Lütfen, Okuyucu Grup Adı Giriniz" %>" value="<%= dataRGroup.name%>">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><%= "Antipassback" %></label>
+                                <div class="col-sm-7">
+                                    <input style="margin-top: 10px;" type="checkbox" id="readerGroupAPB" <%if(dataRGroup.isAntiPassBack){%>checked<%}%>>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Okuyucu Seçiniz</label>
+                                <div class="col-sm-7">
+                                    <table id="dataTable" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Okuyucu Adı</th>
+                                            <th>Okuyucu Seri No</th>
+                                            <th>Okuyucu Tipi</th>
+                                            <th>Okuyucu Özelliği</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% for(var index in dataReader) {
+                                            var subData = dataReader[index];
+                                        %>
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="isChecked" value="<%= subData._id %>"
+                                                        <% for(var i = 0; i < dataRGroup.readersId.length; i++){
+                                                        if(dataRGroup.readersId[i] ===  subData._id.toString()){%>
+                                                       checked>
+                                                <%}
+                                                }%>
+                                            </td>
+                                            <td><%= subData.readerName %></td>
+                                            <td><%= subData.serialNo %></td>
+                                            <td>
+                                                <%switch (subData.readerType){
+                                                case 0:%>
+                                                <%= "Çıkış"%><%
+                                                    break;
+                                                case 1:%>
+                                                <%= "Giriş"%><%
+                                                    break;
+                                                case 2:%>
+                                                <%= "Giriş-Çıkış"%><%
+                                                    break;
+                                                }%>
+                                            </td>
+                                            <td>
+                                                <%switch (subData.readerProp){
+                                                case 0:%>
+                                                <%= "TCP/IP Standart"%><%
+                                                    break;
+                                                case 1:%>
+                                                <%= "TCP/IP Keypad"%><%
+                                                    break;
+                                                }%>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th>Okuyucu Adı</th>
+                                            <th>Okuyucu Seri No</th>
+                                            <th>Okuyucu Tipi</th>
+                                            <th>Okuyucu Özelliği</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-7">
+                                    <a class="btn btn-primary edit-rGroup" data-id="<%= dataRGroup._id%>"><%= "Kaydet" %></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatable/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/definitions/submitReaderGroup.js"></script>
+<script src="/js/numeric.js"></script>
+<script src="/js/createdatatable.js"></script>
+<% include ../../shared/footer.ejs %>

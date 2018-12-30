@@ -1,0 +1,16 @@
+{
+  "server": {
+    "port": 1336
+  },
+  "db": {
+    "title": "rfidcardpure",
+    "host": "127.0.0.1:27017/rfidcardpure",
+    "username": "",
+    "password": ""
+  },
+  "cardServiceExpress": {
+    "title":"cardServiceExpress",
+    "url":"127.0.0.1",
+    "port":"1335"
+  }
+}
